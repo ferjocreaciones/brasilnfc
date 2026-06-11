@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brasil NFC</title>
+<style>
+body{
+    margin:0;font-family:Arial,sans-serif;
+    background:linear-gradient(180deg,#003b1f,#009c3b,#ffdf00);
+    color:white;text-align:center;overflow-x:hidden;
+}
+.container{padding:20px;}
+.card-fc{position:relative;width:90%;max-width:320px;height:480px;margin:20px auto;border-radius:22px;overflow:hidden;
+box-shadow:0 0 25px rgba(255,223,0,.45),0 0 55px rgba(0,156,59,.25);}
+.card-bg{
+position:absolute;width:100%;height:100%;
+background:
+linear-gradient(135deg,rgba(0,156,59,.95),rgba(255,223,0,.90)),
+repeating-linear-gradient(90deg,#009C3B,#009C3B 35px,#FFDF00 35px,#FFDF00 70px);
+z-index:1;
+}
+.card-bg:before{
+content:"";position:absolute;inset:0;
+background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.12));
+}
+.card-bg:after{
+content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.18) 40%,transparent 60%);
+transform:rotate(15deg);animation:shine 6s linear infinite;
+}
+@keyframes shine{
+0%{transform:translateX(-100%) rotate(15deg)}
+100%{transform:translateX(100%) rotate(15deg)}
+}
+.card-player{
+position:absolute;bottom:70px;left:50%;transform:translateX(-50%);
+width:85%;max-height:320px;object-fit:contain;z-index:2;
+filter:drop-shadow(0 0 12px rgba(0,0,0,.55));
+}
+.card-info{position:absolute;bottom:0;width:100%;padding:15px;
+background:linear-gradient(180deg,transparent,rgba(0,0,0,.88));z-index:3;}
+.card-name{font-size:26px;font-weight:bold;}
+.card-details{display:flex;justify-content:center;gap:15px;margin-top:5px;}
+.card-details span{background:rgba(0,0,0,.55);padding:5px 12px;border-radius:8px;}
+.player-box{
+width:92%;max-width:420px;margin:25px auto;padding:20px;border-radius:22px;
+background:linear-gradient(180deg,rgba(10,10,10,.92),rgba(0,60,30,.92));
+border:1px solid rgba(255,223,0,.25);
+}
+.player-title{font-size:28px;font-weight:bold;margin-bottom:15px;color:#FFDF00;}
+.btn-premium,.btn{
+display:block;text-decoration:none;border-radius:18px;margin:12px auto;padding:16px;
+width:90%;max-width:320px;font-weight:bold;
+}
+.btn-premium{
+color:white;background:linear-gradient(135deg,#005a2b,#009c3b,#002776);
+}
+.btn{background:linear-gradient(135deg,#009c3b,#ffdf00);color:#111;}
+.separador{height:8px;margin:28px 0;border-radius:4px;
+background:linear-gradient(90deg,#009c3b,#ffdf00,#002776);}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card-fc">
+<div class="card-bg"></div>
+<img id="player-img" class="card-player" src="vini.jpg">
+<div class="card-info">
+<div id="card-name" class="card-name">Vinícius Júnior</div>
+<div class="card-details"><span>BRA</span><span>🇧🇷</span></div>
+</div>
+</div>
+
+<div class="player-box">
+<div id="premium-title" class="player-title">✨ Vinícius Júnior Edition</div>
+<a id="btn-instagram" class="btn-premium" href="#" target="_blank">📸 Instagram Oficial</a>
+<a id="btn-highlights" class="btn-premium" href="#" target="_blank">🎥 Highlights</a>
+<a id="btn-stats" class="btn-premium" href="#" target="_blank">📊 Estadísticas</a>
+<a id="btn-balon" class="btn-premium" href="#" target="_blank">🏆 Balón de Oro</a>
+</div>
+
+<div class="separador"></div>
+
+<a class="btn" href="https://www.cbf.com.br/" target="_blank">🌐 Sitio Oficial CBF</a>
+<a class="btn" href="https://www.youtube.com/@CBFTV" target="_blank">▶️ YouTube Oficial</a>
+<a class="btn" href="https://www.instagram.com/cbf_futebol/" target="_blank">📸 Instagram Oficial</a>
+<a class="btn" href="https://www.google.com/search?q=seleccion+brasil+proximo+partido" target="_blank">📅 Próximo Partido</a>
+
+<div class="separador"></div>
+
+<script>
+const players={
+vini:{
+name:"Vinícius Júnior",
+image:"vini.jpg",
+instagram:"https://www.instagram.com/vinijr/",
+highlights:"https://www.youtube.com/results?search_query=vinicius+junior+highlights",
+stats:"https://www.google.com/search?q=vinicius+junior+estadisticas",
+ballondor:"https://www.google.com/search?q=vinicius+junior+balon+de+oro"
+},
+neymar:{
+name:"Neymar Jr",
+image:"neymar.jpg",
+instagram:"https://www.instagram.com/neymarjr/",
+highlights:"https://www.youtube.com/results?search_query=neymar+highlights",
+stats:"https://www.google.com/search?q=neymar+estadisticas",
+ballondor:"https://www.google.com/search?q=neymar+balon+de+oro"
+}
+};
+const params=new URLSearchParams(window.location.search);
+const player=players[params.get("player")]||players.vini;
+document.getElementById("player-img").src=player.image;
+document.getElementById("card-name").innerText=player.name;
+document.getElementById("premium-title").innerText="✨ "+player.name+" Edition";
+document.getElementById("btn-instagram").href=player.instagram;
+document.getElementById("btn-highlights").href=player.highlights;
+document.getElementById("btn-stats").href=player.stats;
+document.getElementById("btn-balon").href=player.ballondor;
+</script>
+</div>
+</body>
+</html>
